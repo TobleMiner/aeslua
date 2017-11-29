@@ -11,8 +11,9 @@ aeslua.ciphermode = public;
 -- key - byte array with key
 -- string - string to encrypt
 -- modefunction - function for cipher mode to use
+-- iv - initialization vector to use
 --
-function public.encryptString(key, data, modeFunction)
+function public.encryptString(key, data, modeFunction, iv)
     local iv = iv or {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     local keySched = aes.expandEncryptionKey(key);
     local encryptedData = buffer.new();
@@ -71,8 +72,9 @@ end
 -- key - byte array with key
 -- string - string to decrypt
 -- modefunction - function for cipher mode to use
+-- iv - initialization vector to use
 --
-function public.decryptString(key, data, modeFunction)
+function public.decryptString(key, data, modeFunction, iv)
     local iv = iv or {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     
     local keySched;
